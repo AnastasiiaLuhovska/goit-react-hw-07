@@ -4,7 +4,7 @@ import ContactList from "./components/ContactList.jsx";
 import SearchBox from "./components/SearchBox.jsx";
 import {useDispatch} from "react-redux";
 import {useEffect} from "react";
-import {fetchData} from "./api/api.js";
+import {fetchData} from "./redux/contactsOps.js";
 
 function App() {
 

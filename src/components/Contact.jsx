@@ -2,7 +2,7 @@ import { FcBusinessman } from "react-icons/fc";
 import { FcIphone } from "react-icons/fc";
 import s from './Contact.module.css'
 import {useDispatch} from "react-redux";
-import {deleteData} from "../api/api.js";
+import {deleteData} from "../redux/contactsOps.js";
 
 const Contact = ({user}) => {
 

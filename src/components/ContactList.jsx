@@ -13,7 +13,7 @@ const ContactList = () => {
         <>
             {isLoading && <Loader/>}
             {error && <h2>Something went wrong...</h2>}
-            {filteredUserData.length < 0 || filter ?<h2>We couldn't find any {filter}</h2> : <ul>
+            {filteredUserData.length === 0 && filter ?<h2>We couldn't find any {filter}</h2> : <ul>
                 {filteredUserData.map(user => <Contact key={user.id} user={user}/>
                 )}</ul>}
 
