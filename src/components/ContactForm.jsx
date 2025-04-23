@@ -4,7 +4,7 @@ import s from './ContactForm.module.css'
 import * as Yup from 'yup'
 
 import {useDispatch} from "react-redux";
-import {addContact} from "../redux/contactsSlice.js";
+import {postData} from "../api/api.js";
 
 const ContactForm = () => {
 
@@ -22,7 +22,7 @@ const ContactForm = () => {
 
     const handleSubmit = (value, action)=>{
         action.resetForm()
-        dispatch(addContact(value))
+        dispatch(postData(value))
     }
 
     return <Formik validationSchema={validationSchema} initialValues={{name: '', number: ''}} onSubmit={handleSubmit}>

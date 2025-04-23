@@ -1,14 +1,23 @@
 import Contact from "./Contact.jsx";
+import {selectError, selectFilter, selectFilteredContacts, selectLoading} from "../redux/contactsSlice.js";
 import {useSelector} from "react-redux";
+import Loader from "./Loader.jsx";
 
-const ContactList = ({handleDelete}) => {
-    const contacts = useSelector((state)=> state.contacts.items)
-    const searchValue = useSelector((state)=> state.filters.name)
-    const filteredUserData =  contacts.filter(contact => contact.name.toLowerCase().includes(searchValue.toLowerCase()) || contact.number.toLowerCase().includes(searchValue.toLowerCase()))
-    return <ul>
-        {filteredUserData.map(user => <Contact key={user.id} user={user} handleDelete={handleDelete}/>
-        )}
-    </ul>
+const ContactList = () => {
+    const filteredUserData = useSelector(selectFilteredContacts)
+    const isLoading = useSelector(selectLoading)
+    const error = useSelector(selectError)
+    const filter = useSelector(selectFilter)
+
+    return (
+        <>
+            {isLoading && <Loader/>}
+            {error && <h2>Something went wrong...</h2>}
+            {filteredUserData.length < 0 || filter ?<h2>We couldn't find any {filter}</h2> : <ul>
+                {filteredUserData.map(user => <Contact key={user.id} user={user}/>
+                )}</ul>}
+
+        </>)
 };
 
 export default ContactList;
